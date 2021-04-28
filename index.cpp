@@ -295,8 +295,8 @@ void student::deleted()//หน้า ลบข้อมูล (delete)
 void student::Calculate_grade()//หน้า คำนวณเกรด (GPA)
 {
     system("cls");
-    int numSubject, credit;
-    double totalPoint=0, totalCredit=0, gradePoint;
+    int numSubject;
+    double totalPoint=0, totalCredit=0, gradePoint, credit;
     string gradeletter;
 
     cout << "================================================================================" << endl;
