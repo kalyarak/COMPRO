@@ -12,7 +12,7 @@ using namespace std;
 class student
 {
 private:
-    string firstname, lastname,number, age, sex, classyear, faculty;
+    string firstname, lastname, number, age, sex, classyear, faculty;
 
 public:
     void menu();
@@ -21,6 +21,7 @@ public:
     void edit();
     void search();
     void deleted();
+    void Calculate_grade();
 };
 
 void student::menu()//หน้าหลัก
@@ -38,9 +39,10 @@ menustart:
     cout << "\t\t\t 3. Modify Record" << endl;
     cout << "\t\t\t 4. Search Record" << endl;
     cout << "\t\t\t 5. Delete Record" << endl;
-    cout << "\t\t\t 6. Exit\n" << endl;
+    cout << "\t\t\t 6. Calculate The Grade" << endl;
+    cout << "\t\t\t 7. Exit\n" << endl;
     cout << "\t\t\t-----------------------------------" << endl;
-    cout << "\t\t\tPLEAS Choose Option : [1/2/3/4/5/6]" << endl;
+    cout << "\t\t\tPLEAS Choose Option:[1/2/3/4/5/6/7]" << endl;
     cout << "\t\t\t-----------------------------------" << endl;
 
     cout << "\t\t\t\t Enter Your Choose : ";
@@ -69,25 +71,26 @@ menustart:
         deleted();
         break;
     case 6:
+        Calculate_grade();
+        break;
+    case 7:
         cout << "\n\t\t\t\t... Program Is Exit ...\n";
         remove("stuRecord.txt");
         exit(0);
     default:
-        cout << "\n\t\t\t Invalid choice... Please Try Again";
+        cout << "\n\t\t\t Invalid choice... \"Please Try Again\"";
         break;
     }
     getch();
     goto menustart;
 }
-
-//หน้า เพิ่มข้อมูล (add)
-void student::insert()
+void student::insert()//หน้า เพิ่มข้อมูล (add)
 {
     system("cls");
     fstream file;
-    cout << "------------------------------------------------------------" << endl;
-    cout << "-------------------- Add Student Detail --------------------" << endl;
-    cout << "------------------------------------------------------------" << endl;
+    cout << "================================================================================" << endl;
+    cout << "|----------------------------  Add Student Detail  ----------------------------|" << endl;
+    cout << "================================================================================" << endl;
 
     cout << "\n\t\t\tFirst Name: ";
     cin >> firstname;
@@ -97,7 +100,7 @@ void student::insert()
     cin >> number;
     cout << "\t\t\tAge: ";
     cin >> age;
-    cout << "\t\t\tSex [female/male]: ";
+    cout << "\t\t\tSex (female/male): ";
     cin >> sex;
     cout << "\t\t\tClass: ";
     cin >> classyear;
@@ -108,14 +111,14 @@ void student::insert()
     file << " " << firstname << " " << lastname << " " << number << " " << age << " " << sex << " " << classyear << " " << faculty << "\n";
     file.close();
 }
-void student::display()
+void student::display()//หน้า แสดงข้อมูลทั้งหมด (view all)
 {
     system("cls");
     fstream file;
     int total = 1;
-    cout << "--------------------------------------------------------------" << endl;
-    cout << "-------------------- Student Record Table --------------------" << endl;
-    cout << "--------------------------------------------------------------" << endl;
+    cout << "================================================================================" << endl;
+    cout << "|---------------------------  Student Record Table  ---------------------------|" << endl;
+    cout << "================================================================================" << endl;
 
     file.open("stuRecord.txt", ios::in);
     if (!file)
@@ -133,7 +136,7 @@ void student::display()
             cout << "\t\t\t Last Name: " << lastname << "\n";
             cout << "\t\t\t Student Number: " << number << "\n";
             cout << "\t\t\t Age: " << age << "\n";
-            cout << "\t\t\t Sex [female/male]: " << sex << "\n";
+            cout << "\t\t\t Sex (female/male): " << sex << "\n";
             cout << "\t\t\t Class: " << classyear << "\n";
             cout << "\t\t\t Faculty: " << faculty << "\n";
             file >> firstname >> lastname >> number >> age >> sex >> classyear >> faculty;
@@ -145,15 +148,15 @@ void student::display()
     }
     file.close();
 }
-void student::edit()
+void student::edit()//หน้า แก้ไขข้อมูล (modify)
 {
     system("cls");
     fstream file, file1;
     string num;
     int found=0;
-    cout << "----------------------------------------------------------------" << endl;
-    cout << "-------------------- Student Modify Details --------------------" << endl;
-    cout << "----------------------------------------------------------------" << endl;
+    cout << "================================================================================" << endl;
+    cout << "|--------------------------  Student Modify Details  --------------------------|" << endl;
+    cout << "================================================================================" << endl;
 
     file.open("stuRecord.txt", ios::in);
     if (!file)
@@ -163,7 +166,7 @@ void student::edit()
     }
     else
     {
-        cout << "\n Enter Student Number of student which you want to modify: ";
+        cout << "\n\tEnter Student Number of student which you want to modify: ";
         cin >> num;
         file1.open("record.txt", ios::app | ios::out);
         file >> firstname >> lastname >> number >> age >> sex >> classyear >> faculty;
@@ -183,7 +186,7 @@ void student::edit()
                 cin >> number;
                 cout << "\t\t\tAge: ";
                 cin >> age;
-                cout << "\t\t\tSex [female/male]: ";
+                cout << "\t\t\tSex (female/male): ";
                 cin >> sex;
                 cout << "\t\t\tClass: ";
                 cin >> classyear;
@@ -206,21 +209,22 @@ void student::edit()
         rename("record.txt", "stuRecord.txt");
     }
 }
-void student::search(){
+void student::search()//หน้า ค้นหาข้อมูลรายบุคคล (search)
+{
     system("cls");
     fstream file;
     string num;
     int found=0;
-    cout << "----------------------------------------------------------------" << endl;
-    cout << "------------------------- Search Table -------------------------" << endl;
-    cout << "----------------------------------------------------------------" << endl;
+    cout << "================================================================================" << endl;
+    cout << "|-------------------------------  Search Table  -------------------------------|" << endl;
+    cout << "================================================================================" << endl;
 
     file.open("stuRecord.txt", ios::in);
     if (!file)
     {
         cout << "\n\t\t\tNo Data is Present... " << endl;
     }else{
-        cout << "\nEnter Student Number of Student which you want to search: ";
+        cout << "\n\tEnter Student Number of Student which you want to search: ";
         cin >> num;
         file >> firstname >> lastname >> number >> age >> sex >> classyear >> faculty;
         while (!file.eof())
@@ -231,7 +235,7 @@ void student::search(){
                 cout << "\t\t\t Last Name: " << lastname << "\n";
                 cout << "\t\t\t Student Number: " << number << "\n";
                 cout << "\t\t\t Age: " << age << "\n";
-                cout << "\t\t\t Sex [female/male]: " << sex << "\n";
+                cout << "\t\t\t Sex (female/male): " << sex << "\n";
                 cout << "\t\t\t Class: " << classyear << "\n";
                 cout << "\t\t\t Faculty: " << faculty << "\n";
                 found++;
@@ -245,34 +249,92 @@ void student::search(){
         file.close();
     }
 }
-void student::deleted(){
+void student::deleted()//หน้า ลบข้อมูล (delete)
+{
     system("cls");
     fstream file, file1;
     int found = 0;
     string num;
-    cout << "================================================================" << endl;
-    cout << "|------------------  Delete Student Details  ------------------|" << endl;
-    cout << "================================================================" << endl;
+    cout << "================================================================================" << endl;
+    cout << "|--------------------------  Delete Student Details  --------------------------|" << endl;
+    cout << "================================================================================" << endl;
 
     file.open("stuRecord.txt", ios::in);
     if (!file)
     {
-        cout << "\n\t\t\tNo Data is Present..";
+        cout << "\n\t\t\tNo Data is Present...";
         file.close();
     }else{
-        cout << "\nEnter Student Number of Student which you want Delete Data: ";
+        cout << "\n\tEnter Student Number of Student which you want Delete Data: ";
         cin >> num;
         file1.open("record.txt", ios::app | ios::out);
         file >> firstname >> lastname >> number >> age >> sex >> classyear >> faculty;
-        while (num != number)
+        while (!file.eof())
         {
-            /* code */
+            if (num != number)
+            {
+                file1 << " " << firstname << " " << lastname << " " << number << " " << age << " " << sex << " " << classyear << " " << faculty << "\n";
+            }else{
+                found++;
+                cout << "\n\t\t\t...Successfully Delete Data...";
+            }
+            file >> firstname >> lastname >> number >> age >> sex >> classyear >> faculty;
         }
-
+        if (found == 0)
+        {
+            cout << "\n\t\t\t Student Number Not Found...";
+        }
+        file.close();
+        file1.close();
+        remove("stuRecord.txt");
+        rename("record.txt", "stuRecord.txt");
     }
 
 
 }
+void student::Calculate_grade()//หน้า คำนวณเกรด (GPA)
+{
+    system("cls");
+    int numSubject, credit;
+    double totalPoint=0, totalCredit=0, gradePoint;
+    string gradeletter;
+
+    cout << "================================================================================" << endl;
+    cout << "|----------------------  Calculate The Grade Of Student  ----------------------|" << endl;
+    cout << "================================================================================" << endl;
+    cout << "\n\t\tEnter Number Of Subjects: ";
+    cin >> numSubject;
+
+    for (int i = 0; i < numSubject; i++)
+    {
+        cout << "\n\t\t\tEnter Grade and Credit (e.g.-> B 2): ";
+        cin >> gradeletter >> credit;
+
+        if (gradeletter == "A") {
+            gradePoint = 4;
+        } else if (gradeletter == "B+") {
+            gradePoint = 3.5;
+        } else if (gradeletter == "B") {
+            gradePoint = 3;
+        } else if (gradeletter == "C+") {
+            gradePoint = 2.5;
+        } else if (gradeletter == "C") {
+            gradePoint = 2;
+        } else if (gradeletter == "D+") {
+            gradePoint = 1.5;
+        } else if (gradeletter == "D") {
+            gradePoint = 1;
+        } else{
+            gradePoint = 0;
+        }
+        totalCredit += credit;
+        totalPoint += credit * gradePoint;
+    }
+    cout << "\n\t\t\tTotal Credit = " << totalCredit << endl;
+    cout << "\t\t\tTotal Point  = " << totalPoint << endl;
+    cout << "\t\t\tGPA = " << totalPoint / totalCredit;
+}
+
 main()
 {
     student project;
