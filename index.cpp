@@ -332,7 +332,7 @@ void student::Calculate_grade()//หน้า คำนวณเกรด (GPAX)
     }
     cout << "\n\t\t\tTotal Credit = " << totalCredit << endl;
     cout << "\t\t\tTotal Point  = " << totalPoint << endl;
-    cout << "\t\t\tGPAX = " << totalPoint / totalCredit;
+    cout << "\t\t\tGPA = " << totalPoint / totalCredit;
 }
 
 main()
