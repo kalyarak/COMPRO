@@ -41,7 +41,7 @@
 https://youtu.be/owF1FOgdc9s
 
 ## โปสเตอร์งาน
-![GitHub Logo](/POSTER STUDENT MANAGEMENT SYSTEM (1).png)
+![](POSTER STUDENT MANAGEMENT SYSTEM (1).png)
 ---
 ## สมาชิกกลุ่ม
 | รหัสนักศึกษา| ชื่อ - นามสกุล |    Github    |
