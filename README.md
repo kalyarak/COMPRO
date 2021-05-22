@@ -40,6 +40,8 @@
 ## คลิปสาธิตการใช้งานโปรแกรม
 https://youtu.be/owF1FOgdc9s
 
+## โปสเตอร์งาน
+(/POSTER STUDENT MANAGEMENT SYSTEM (1).png)
 ---
 ## สมาชิกกลุ่ม
 | รหัสนักศึกษา| ชื่อ - นามสกุล |    Github    |
