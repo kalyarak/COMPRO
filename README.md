@@ -50,5 +50,6 @@ https://youtu.be/owF1FOgdc9s
 | 63070007   |นางสาวกัลยรักษ์ ชุบผา     | [kalyarak](https://github.com/kalyarak) |
 | 63070022   |นางสาวจุฑามาศ ชนาฐิติกุล     |[Jutamas25244](https://github.com/Jutamas25244)  |
 
-
+## SOURCE CODE ( อ้างอิงโค้ดมาจาก )
+https://www.codewithc.com/mini-project-in-c-student-record-system/
 
